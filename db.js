@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 // define mongodb connection url
-const mongoURL = 'mongodb://127.0.0.1:27017/mydatabaseDeepu'
+//const mongoURL = process.env.DB_URL_LOCAL
+const mongoURL = process.env.DB_URL
 
 //set up mongodb connection
 mongoose.connect(mongoURL, {
