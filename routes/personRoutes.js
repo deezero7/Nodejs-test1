@@ -5,8 +5,8 @@ const person = require('./../models/person');
 router.post('/', async (req, res) => {
     try{
       const data = req.body;
-      const newMenu = new Person(data);
-      const response = await newMenu.save();
+      const newPerson = new person(data);
+      const response = await newPerson.save();
       console.log('data saved');
       res.status(200).json(response);
     }
@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
   // GET method to get the person
 router.get('/', async (req, res) =>{
   try{
-      const data = await Person.find();
+      const data = await person.find();
       console.log('data fetched');
       res.status(200).json(data);
   }catch(err){
