@@ -15,12 +15,24 @@ router.post('/', async (req, res) => {
       res.status(500).json({error: 'Internal Server Error'});
     }
   })
+
+  // GET method to get the person
+router.get('/', jwtAuthMiddleware, async (req, res) =>{
+  try{
+      const data = await Person.find();
+      console.log('data fetched');
+      res.status(200).json(data);
+  }catch(err){
+      console.log(err);
+      res.status(500).json({error: 'Internal Server Error'});
+  }
+})
   
   router.get('/', async (req, res)=> {
     
     try{
       const worktype = req.params.workType;
-      if(workTylpe == 'chef' || workType == 'manager' || workType == 'waiter'){
+      if(workType == 'chef' || workType == 'manager' || workType == 'waiter'){
         const persons = await Person.find({workType: worktype});
         res.json(persons);
       }
